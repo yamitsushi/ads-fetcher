@@ -1,7 +1,14 @@
-import unittest
+from unittest import TestCase, mock
 from helper.facebook import Facebook
 
-class FacebookTest(unittest.TestCase):
+class FacebookTest(TestCase):
+    """Facebook Builder"""
+    def test_facebook_fail(self):
+        self.assertRaises(TypeError, Facebook, graph_url=["invalid"])
+        self.assertRaises(TypeError, Facebook, graph_url=123)
+        self.assertRaises(TypeError, Facebook, graph_version=123)
+        self.assertRaises(TypeError, Facebook, api="asdf")
+
     """Token Tester"""
     def test_token_string(self):
         facebook = Facebook()

@@ -4,8 +4,14 @@ class Facebook:
     """Helper class for easier access to facebook"""
 
     def __init__(self, graph_url="https://graph.facebook.com", graph_version="v10.0", api=Api):
+        if type(graph_url) is not str:
+            raise TypeError("The url must be a string")
         self._graph_url = graph_url
+        if type(graph_version) is not str:
+            raise TypeError("The version must be a string")
         self._graph_version = graph_version
+        if api is not Api:
+            raise TypeError("The api must be valid Api")
         self._api = api()
 
     def set_token(self, token):
