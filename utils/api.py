@@ -3,7 +3,12 @@ import validators
 
 class Api:
     def get(self, link=None, parameters=None):
-        return requests.get(self.build(link, parameters))
+        link = self.check_url(link)
+        if parameters is None:
+            return requests.get(link)
+        if type(parameters) is not dict:
+            raise TypeError("The parameter must be a dictionary")
+        return requests.get(link, parameters)
     
     def build(self, link = None, parameters = None):
         link = self.check_url(link)
