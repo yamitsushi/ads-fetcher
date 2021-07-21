@@ -55,5 +55,12 @@ class Facebook:
             raise TypeError("Key Until must be a string")
         self._range = range
     
-    # def build_insight(self):
-    #     return self._api.build
+    def test_token_insight(self):
+        if not hasattr(self, "_token"):
+            raise ValueError("Token is not set")
+        url = "/".join([self._graph_url, self._graph_version, "me"])
+        validity = self._api.get(link=url, parameters={"access_token": self._token})
+        if validity.status_code == 200:
+            return True
+        return False
+            
