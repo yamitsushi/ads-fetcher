@@ -55,7 +55,7 @@ class Facebook:
             raise TypeError("Key Until must be a string")
         self._range = range
     
-    def test_token_insight(self):
+    def is_token_valid(self):
         if not hasattr(self, "_token"):
             raise ValueError("Token is not set")
         url = "/".join([self._graph_url, self._graph_version, "me"])

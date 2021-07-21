@@ -77,11 +77,11 @@ class FacebookTest(TestCase):
         with mock.patch("utils.api.requests.get", side_effect=mocked_get_requests):
             facebook = Facebook()
             facebook.set_token("valid")
-            self.assertEqual(facebook.test_token_insight(), True)
+            self.assertEqual(facebook.is_token_valid(), True)
     
     def test_token_validity_fail(self):
         with mock.patch("utils.api.requests.get", side_effect=mocked_get_requests):
             facebook = Facebook()
-            self.assertRaises(ValueError, facebook.test_token_insight)
+            self.assertRaises(ValueError, facebook.is_token_valid)
             facebook.set_token("invalid")
-            self.assertEqual(facebook.test_token_insight(), False)
+            self.assertEqual(facebook.is_token_valid(), False)
