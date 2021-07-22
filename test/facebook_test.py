@@ -65,14 +65,6 @@ class FacebookTest(TestCase):
         facebook = Facebook()
         self.assertRaises(ValueError, facebook.set_level, level="")
 
-    """Time Range Tester"""
-    def test_range_object(self):
-        facebook = Facebook()
-        self.assertRaises(TypeError, facebook.set_range, range="Invalid")
-        self.assertRaises(ValueError, facebook.set_range, range={})
-        self.assertRaises(TypeError, facebook.set_range, range={"since": 123, "until": ""})
-        self.assertRaises(TypeError, facebook.set_range, range={"since": "", "until": 123})
-
     """Token Tester"""
     def test_token_validity(self):
         with mock.patch("utils.api.requests.get", side_effect=mocked_get_requests):

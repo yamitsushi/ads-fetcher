@@ -44,17 +44,6 @@ class Facebook:
             raise ValueError("Field must not be empty")
         self._level = level
     
-    def set_range(self, range):
-        if type(range) is not dict:
-            raise TypeError("Field must be a dictionary")
-        if "since" not in range or "until" not in range:
-            raise ValueError("Must have the key since and until")
-        if type(range['since']) is not str:
-            raise TypeError("Key Since must be a string")
-        if type(range['until']) is not str:
-            raise TypeError("Key Until must be a string")
-        self._range = range
-    
     def is_token_valid(self):
         if not hasattr(self, "_token"):
             raise ValueError("Token is not set")
