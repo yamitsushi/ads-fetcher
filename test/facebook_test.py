@@ -10,7 +10,8 @@ def mocked_get_requests(*args):
             return self.text
     if args[1]["access_token"] == "valid":
         return MockResponse({
-            "validity": True
+            "validity": True,
+            "data": []
         }, 200)
     if args[1]["access_token"] == "invalid":
         return MockResponse({
@@ -85,3 +86,37 @@ class FacebookTest(TestCase):
             self.assertRaises(ValueError, facebook.is_token_valid)
             facebook.set_token("invalid")
             self.assertEqual(facebook.is_token_valid(), False)
+
+    def test_get_insight(self):
+        with mock.patch("utils.api.requests.get", side_effect=mocked_get_requests):
+            facebook = Facebook()
+            facebook.set_account("act_number")
+            facebook.set_field("sample_fields")
+            facebook.set_level("sample_level")
+            facebook.set_token("valid")
+            response = facebook.get_insight(since="2021-07-04", until="2021-07-10")
+            self.assertEqual(type(response.text["data"]), list)
+
+    def test_get_insight_fail(self):
+        with mock.patch("utils.api.requests.get", side_effect=mocked_get_requests):
+            for key in range(5):
+                facebook = Facebook()
+                if key == 0 or key != 1:
+                    facebook.set_account("act_number")
+                if key == 0 or key != 2:
+                    facebook.set_level("sample_level")
+                if key == 0 or key != 3:
+                    facebook.set_token("sample_token")
+                if key == 0 or key != 4:
+                    facebook.set_field("sample_fields")
+                self.assertRaises(ValueError,facebook.get_insight)
+
+            facebook = Facebook()
+            facebook.set_account("act_number")
+            facebook.set_level("sample_level")
+            facebook.set_token("sample_token")
+            facebook.set_field("sample_fields")
+            self.assertRaises(ValueError,facebook.get_insight, since="2021-07-04")
+            self.assertRaises(ValueError,facebook.get_insight, until="2021-07-04")
+            self.assertRaises(TypeError,facebook.get_insight, since="2021-07-04", until=123)
+            self.assertRaises(TypeError,facebook.get_insight, since=123, until="2021-07-04")

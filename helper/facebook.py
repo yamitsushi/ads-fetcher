@@ -63,4 +63,24 @@ class Facebook:
         if validity.status_code == 200:
             return True
         return False
-            
+
+    def get_insight(self, since=None, until=None):
+        if not hasattr(self, "_account"):
+            raise ValueError("Account is not set")
+        if not hasattr(self, "_level"):
+            raise ValueError("Level is not set")
+        if not hasattr(self, "_token"):
+            raise ValueError("Token is not set")
+        if not hasattr(self, "_field"):
+            raise ValueError("Field is not set")
+        if since is None or until is None:
+            raise ValueError("Must have the Key since and until")
+        if type(since) is not str or type(until) is not str:
+            raise TypeError("Key since and until must be a string")
+        url = "/".join([self._graph_url, self._graph_version, self._account, "insights"])
+        return self._api.get(link=url, parameters={
+        "access_token": self._token, 
+        "fields": self._field,
+        "time_range": str({"since": since, "until": until}),
+        "level": self._level
+        })
