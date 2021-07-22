@@ -3,7 +3,7 @@ import sys
 
 if __name__ == "__main__":
     facebook = Facebook()
-    facebook.set_token("EAABsbCS1iHgBAFwJHsJRLyeYs4HUSYjGX8cn11cl6ZCQevAcOVNW7Gfv3T5Qfwf1CcYYo4rHCloRf6jaDiVFecfwbzEZCzRu9ZBV5k2Uq5bBbEFY4NFc0LkvGZCfYqNeUZB3nozMQkAKGjZCnE5MajJdxv7yji260wZBSu0lgyvWAZDZD")
+    facebook.set_token("EAAEpE5CoeZC8BAP29q1ACdexY195b4cpg0kXos6LUDgk6T1o6l1GuaBx2zs0tRr5YbZAKECoiBIbN2jktr56EDG4XfjynAG6G5H5lEQpYz4f6Y4vBgUd0xoSftvKGorH5Dn2aLxFBUOWbaMmbv8aigsyhaAU3Qf3iuwJIQhaSakbO1gG9Uort2tBXWyxYZD")
     facebook.set_account("act_2563373910645150")
     facebook.set_level("campaign")
     facebook.set_field("campaign_name,impressions,reach,inline_link_clicks,ctr,cpc,spend,purchase_roas,actions")
