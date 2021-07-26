@@ -12,7 +12,6 @@ class FacebookInsight(pd.DataFrame):
                 temp.append(0.0)
                 continue
             for item in items:
-                print(item)
                 if item["action_type"] == "omni_purchase":
                     temp.append(float(item["value"]))
                     break
