@@ -19,7 +19,7 @@ if __name__ == "__main__":
     data["purchase"] = data.get_action("actions", "purchase")
     data["revenue"] = data['roas'].astype(float) * data["spend"].astype(float)
 
-    filtered = data.filter("date_start", "campaign_name", "impressions", "reach", "inline_link_clicks", "ctr", "cpc", "spend", "roas", "purchase", "revenue")
+    filtered = data.reindex(columns=["date_start", "campaign_name", "impressions", "reach", "inline_link_clicks", "ctr", "cpc", "spend", "roas", "purchase", "revenue"])
     output = filtered.rename(columns={"date_start": "date", "campaign_name": "name", "inline_link_clicks": "clicks"}, errors="raise")
 
     print(output)
