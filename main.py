@@ -4,7 +4,7 @@ import sys
 
 if __name__ == "__main__":
     facebook = Facebook()
-    facebook.set_token("EAABsbCS1iHgBAKudwQUurM4W6MTWEAdTqrWmTayWsZBGTlXjZCX3GV8uWhpQkwZB5WYwtaPcAMBfq7HaRHI3wOGZBlfSZCTsTE8qtT8v812TrF881apUDe9phWGIVbRwKMdnLL4nXSxN0oVJx68eiLLYMH7iPMYPRkMS541lTkwZDZD")
+    facebook.set_token("EAAEpE5CoeZC8BAJXpwIw4KgjWhqNs2Bml4EyYJAfTW51qSjzMrTygsZB5yKKGbgi8E2FHzISEQaRNQbsX8ejyOJ84oVL9N4m5E0dkG6oX1I7CbhezcVRZCGZCTKpywnAIXemOvUfxLweH2BNJOnLNepodRqpQutVaA8KEDXs6QZDZD")
     if not facebook.is_token_valid():
         sys.exit("Token is invalid")
 
