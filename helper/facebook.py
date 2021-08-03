@@ -83,5 +83,6 @@ class Facebook:
         "access_token": self._token, 
         "fields": self._field,
         "time_range": str({"since": since, "until": until}),
-        "level": self._level
+        "level": self._level,
+        "use_unified_attribution_setting": True
         })
