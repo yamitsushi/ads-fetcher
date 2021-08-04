@@ -21,3 +21,6 @@ class FacebookInsight(pd.DataFrame):
             else:
                 temp.append(0)
         return temp
+    
+    def sort(self, column_name, ascending):
+        return FacebookInsight(self.sort_values(by=column_name, ascending=ascending, ignore_index=True))

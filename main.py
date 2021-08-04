@@ -15,6 +15,7 @@ if __name__ == "__main__":
 
     insights = facebook.get_insight(since="2021-07-04", until="2021-07-10").json()
     data = FacebookInsight(insights["data"])
+    data = data.sort(column_name='campaign_name', ascending=True)
 
     data["roas"] = data.get_action("purchase_roas", "omni_purchase")
     data["purchase"] = data.get_action("actions", "purchase")
