@@ -21,6 +21,14 @@ class FacebookInsight(pd.DataFrame):
             else:
                 temp.append(0)
         return temp
-    
-    def sort(self, column_name, ascending):
+
+
+    def sort(self, column_name=None, ascending=None):
+        if column_name is None or ascending is None:
+            raise ValueError("The key column_name and ascending is required")
+        if type(column_name) is not str:
+            raise TypeError("The key column_name must be a string")
+        if type(ascending) is not bool:
+            raise TypeError("The key ascending must be a boolean")
+
         return FacebookInsight(self.sort_values(by=column_name, ascending=ascending, ignore_index=True))
